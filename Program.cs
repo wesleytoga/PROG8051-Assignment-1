@@ -50,5 +50,24 @@ class Program
         while (string.IsNullOrWhiteSpace(userPetName));
 
         Console.WriteLine("\nWelcome, {0}! Let's take good care of him", userPetName);
+
+        // Show Main Menu
+        ShowMainMenu(userPetName);
+    }
+
+    static private void ShowMainMenu(string petName)
+    {
+        Console.WriteLine("\nMain Menu");
+        string[] menuList = new string[] {
+            "Feed {0}",
+            "Play wth {0}",
+            "Let {0} Rest",
+            "Check {0}'s Status",
+            "Exit"
+        };
+        for (int i = 0; i < menuList.Length; i++)
+        {
+            Console.WriteLine($"{i + 1}. {string.Format(menuList[i], petName)}");
+        }
     }
 }
