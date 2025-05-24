@@ -30,13 +30,14 @@ class Program
                 {
                     userPetTypeId = selected - 1;
                     validSelection = true;
-                    Console.WriteLine("\nUser Input: {0}", selected);
                     break;
                 }
             }
             Console.WriteLine("\nPlease choose a number between 1 and " + petType.Length);
         } while (!validSelection);
-        
+
         Console.WriteLine("\nYou have chosen a {0}. What would like to name your pet?", petType[userPetTypeId]);
+        
+        // Prompt user for pet name
     }
 }
