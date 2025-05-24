@@ -12,6 +12,7 @@ class Program
 
         // Set variables for user pet details
         int userPetTypeId = 0;
+        string userPetName = "";
 
         // Prompt user to choose pet type
         Console.WriteLine("Please choose a type of pet");
@@ -39,5 +40,15 @@ class Program
         } while (!userValidSelection);
 
         Console.WriteLine("\nYou have chosen a {0}. What would like to name your pet?", petType[userPetTypeId]);
+
+        // Prompt user to enter pet name
+        do
+        {
+            Console.Write("\nUser Input: ");
+            userPetName = Console.ReadLine()!;
+        }
+        while (string.IsNullOrWhiteSpace(userPetName));
+
+        Console.WriteLine("\nWelcome, {0}! Let's take good care of him", userPetName);
     }
 }
