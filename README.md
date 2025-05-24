@@ -1,1 +1,1 @@
-# PROG8051-Assignment-1
+# PROG8051 Assignment 1: Virtual Pet Simulator Project
