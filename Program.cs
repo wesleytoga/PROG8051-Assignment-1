@@ -39,7 +39,7 @@ class Program
             Console.WriteLine("\nPlease choose a number between 1 and " + petType.Length);
         } while (!userValidSelection);
 
-        Console.WriteLine("\nYou have chosen a {0}. What would like to name your pet?", petType[userPetTypeId]);
+        Console.WriteLine("\nYou have chosen a {0}. What would you like to name your pet?", petType[userPetTypeId]);
 
         // Prompt user to enter pet name
         do
