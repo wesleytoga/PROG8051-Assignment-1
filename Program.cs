@@ -4,11 +4,13 @@ class Program
 {
     static void Main()
     {
+        bool userValidSelection = false;
+
         // Define available pet types
         string[] petType = new string[] { "Cat", "Dog", "Bird", "Chinchilla" }
         ;
 
-        // Set variables for user pet selection
+        // Set variables for user pet details
         int userPetTypeId = 0;
 
         // Prompt user to choose pet type
@@ -20,24 +22,22 @@ class Program
 
         // Check that a valid selection was made and set selection
         string? inputPetType;
-        bool validSelection = false;
         do
         {
+            Console.Write("\nUser Input: ");
             inputPetType = Console.ReadLine();
             if (int.TryParse(inputPetType, out int selected))
             {
                 if (selected > 0 && selected <= petType.Length)
                 {
                     userPetTypeId = selected - 1;
-                    validSelection = true;
+                    userValidSelection = true;
                     break;
                 }
             }
             Console.WriteLine("\nPlease choose a number between 1 and " + petType.Length);
-        } while (!validSelection);
+        } while (!userValidSelection);
 
         Console.WriteLine("\nYou have chosen a {0}. What would like to name your pet?", petType[userPetTypeId]);
-        
-        // Prompt user for pet name
     }
 }
