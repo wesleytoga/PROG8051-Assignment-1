@@ -106,11 +106,20 @@ class Program
                 // Increase time passed
                 timePassedInHours++;
 
-                // If pet's hunger is very high and happiness is very low
-                if (pet.Status.Hunger >= 9 || pet.Status.Happiness <= 2)
+                // Health Deterioration
+                // If user wants to play but pet is hungry
+                if (pet.Status.Hunger >= 9)
                 {
                     pet.Status.Health -= 1;
                     Console.WriteLine("\n{0} is refusing to play because {0} is too hungry", pet.Name);
+                    continue;
+                }
+
+                // If user wants to feed pet but pet is unhappy
+                if (pet.Status.Happiness <= 2)
+                {
+                    pet.Status.Health -= 1;
+                    Console.WriteLine("\n{0} is refusing to eat because {0} is not happy", pet.Name);
                     continue;
                 }
 
@@ -196,7 +205,7 @@ class Program
     {
         if (pet.Status.Hunger >= 7)
         {
-            Console.WriteLine("\n{0}'s hunger level is critically high. Pleasee feed the pet", pet.Name);
+            Console.WriteLine("\n{0}'s hunger level is critically high. please feed the pet", pet.Name);
         }
 
         if (pet.Status.Happiness <= 3)
