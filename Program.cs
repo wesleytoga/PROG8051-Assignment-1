@@ -1,4 +1,6 @@
-﻿namespace VirtualPetSimulator;
+﻿using System.Security.Claims;
+
+namespace VirtualPetSimulator;
 
 class Program
 {
@@ -11,9 +13,25 @@ class Program
 
     public class PetStatus
     {
-        public int Hunger { get; set; } = 5;
-        public int Happiness { get; set; } = 5;
-        public int Health { get; set; } = 5;
+        private int hunger = 5;
+        private int happiness = 5;
+        private int health = 5;
+
+        public int Hunger
+        {
+            get => hunger;
+            set => hunger = Math.Clamp(value, 1, 10);
+        }
+        public int Happiness
+        {
+            get => happiness;
+            set => happiness = Math.Clamp(value, 1, 10);
+        }
+        public int Health
+        {
+            get => health;
+            set => health = Math.Clamp(value, 1, 10);
+        }
     }
 
     static void Main()
@@ -73,11 +91,23 @@ class Program
 
             switch (menuOption)
             {
+                // Feed Pet
                 case 1:
+                    pet.Status.Hunger -= 2;
+                    pet.Status.Health += 1;
+                    Console.WriteLine("\nYou fed {0}. His hunger decreases, and health improves slightly.", pet.Name);
                     break;
+                // Play with Pet
                 case 2:
+                    pet.Status.Happiness += 2;
+                    pet.Status.Hunger += 1;
+                    Console.WriteLine("\nYou played with {0}. His happiness increases, but he's a bit hungry", pet.Name);
                     break;
+                // Let Pet rest
                 case 3:
+                    pet.Status.Health += 2;
+                    pet.Status.Happiness -= 1;
+                    Console.WriteLine("\nYou let {0} rest. His health improves, but he's less happy", pet.Name);
                     break;
                 // Pet Status
                 case 4:
@@ -89,6 +119,8 @@ class Program
             }
         }
         while (menuOption != 5);
+
+        Console.WriteLine("\nThank you for playing with {0}. Goodbye!", pet.Name);
     }
 
     static private int ShowMainMenu(string petName)
