@@ -70,8 +70,25 @@ class Program
         do
         {
             menuOption = ShowMainMenu(pet.Name);
+
+            switch (menuOption)
+            {
+                case 1:
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    break;
+                // Pet Status
+                case 4:
+                    Console.WriteLine("\n{0}'s Status", pet.Name);
+                    Console.WriteLine("- Hunger: {0}", pet.Status.Hunger);
+                    Console.WriteLine("- Happiness: {0}", pet.Status.Happiness);
+                    Console.WriteLine("- Health: {0}", pet.Status.Health);
+                    break;
+            }
         }
-        while (true);
+        while (menuOption != 5);
     }
 
     static private int ShowMainMenu(string petName)
