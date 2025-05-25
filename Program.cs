@@ -5,7 +5,15 @@ class Program
     public class Pet
     {
         public int TypeId { get; set; }
-        public string? Name { get; set; }
+        public string Name { get; set; } = "";
+        public PetStatus Status { get; set; } = new PetStatus();
+    }
+
+    public class PetStatus
+    {
+        public int Hunger { get; set; } = 5;
+        public int Happiness { get; set; } = 5;
+        public int Health { get; set; } = 5;
     }
 
     static void Main()
@@ -51,16 +59,22 @@ class Program
         {
             Console.Write("\nUser Input: ");
             pet.Name = Console.ReadLine()!;
+            break;
         }
-        while (string.IsNullOrWhiteSpace(pet.Name));
+        while (true);
 
         Console.WriteLine("\nWelcome, {0}! Let's take good care of him", pet.Name);
 
         // Show Main Menu
-        ShowMainMenu(pet.Name);
+        int menuOption;
+        do
+        {
+            menuOption = ShowMainMenu(pet.Name);
+        }
+        while (true);
     }
 
-    static private void ShowMainMenu(string petName)
+    static private int ShowMainMenu(string petName)
     {
         Console.WriteLine("\nMain Menu:");
         string[] menuList = new string[] {
@@ -74,5 +88,22 @@ class Program
         {
             Console.WriteLine($"{i + 1}. {string.Format(menuList[i], petName)}");
         }
+
+        // Prompt user for menu selection
+        int userSelection;
+        do
+        {
+            Console.Write("User Input:");
+            string? input = Console.ReadLine();
+            if (int.TryParse(input, out int selection) && selection > 0 && selection <= menuList.Length)
+            {
+                userSelection = selection;
+                break;
+            }
+            Console.WriteLine("\nPlease choose a number between 1 and {0}.", menuList.Length);
+        }
+        while (true);
+
+        return userSelection;
     }
 }
