@@ -2,17 +2,23 @@
 
 class Program
 {
+    public class Pet
+    {
+        public int TypeId { get; set; }
+        public string? Name { get; set; }
+    }
+
     static void Main()
     {
-        bool userValidSelection = false;
-
         // Define available pet types
         string[] petType = new string[] { "Cat", "Dog", "Bird", "Chinchilla" }
         ;
 
         // Set variables for user pet details
-        int userPetTypeId = 0;
-        string userPetName = "";
+        var pet = new Pet()
+        {
+            TypeId = 0
+        };
 
         // Prompt user to choose pet type
         Console.WriteLine("Please choose a type of pet");
@@ -31,33 +37,32 @@ class Program
             {
                 if (selected > 0 && selected <= petType.Length)
                 {
-                    userPetTypeId = selected - 1;
-                    userValidSelection = true;
+                    pet.TypeId = selected - 1;
                     break;
                 }
             }
             Console.WriteLine("\nPlease choose a number between 1 and " + petType.Length);
-        } while (!userValidSelection);
+        } while (true);
 
-        Console.WriteLine("\nYou have chosen a {0}. What would you like to name your pet?", petType[userPetTypeId]);
+        Console.WriteLine("\nYou have chosen a {0}. What would you like to name your pet?", petType[pet.TypeId]);
 
         // Prompt user to enter pet name
         do
         {
             Console.Write("\nUser Input: ");
-            userPetName = Console.ReadLine()!;
+            pet.Name = Console.ReadLine()!;
         }
-        while (string.IsNullOrWhiteSpace(userPetName));
+        while (string.IsNullOrWhiteSpace(pet.Name));
 
-        Console.WriteLine("\nWelcome, {0}! Let's take good care of him", userPetName);
+        Console.WriteLine("\nWelcome, {0}! Let's take good care of him", pet.Name);
 
         // Show Main Menu
-        ShowMainMenu(userPetName);
+        ShowMainMenu(pet.Name);
     }
 
     static private void ShowMainMenu(string petName)
     {
-        Console.WriteLine("\nMain Menu");
+        Console.WriteLine("\nMain Menu:");
         string[] menuList = new string[] {
             "Feed {0}",
             "Play wth {0}",
