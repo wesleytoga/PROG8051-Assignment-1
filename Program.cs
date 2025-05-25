@@ -110,7 +110,7 @@ class Program
         int userSelection;
         do
         {
-            Console.Write("User Input:");
+            Console.Write("\nUser Input:");
             string? input = Console.ReadLine();
             if (int.TryParse(input, out int selection) && selection > 0 && selection <= menuList.Length)
             {
