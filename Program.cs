@@ -94,10 +94,15 @@ class Program
         {
             menuOption = ShowMainMenu(pet.Name);
 
+            if (menuOption == 5)
+            {
+                break;
+            }
+
             if (menuOption != 4)
             {
                 // Check Every 3 hours and if the pet wasn't fed in last 3 hours 
-                if (!last3Actions.Contains(1) && timePassedInHours % 3 == 0)
+                if (!last3Actions.Contains(1) && timePassedInHours > 3)
                 {
                     pet.Status.Hunger += 2;
                     pet.Status.Happiness -= 1;
@@ -187,7 +192,7 @@ class Program
         int userSelection;
         do
         {
-            Console.Write("\nUser Input:");
+            Console.Write("\nUser Input: ");
             string? input = Console.ReadLine();
             if (int.TryParse(input, out int selection) && selection > 0 && selection <= menuList.Length)
             {
@@ -205,17 +210,17 @@ class Program
     {
         if (pet.Status.Hunger >= 7)
         {
-            Console.WriteLine("\n{0}'s hunger level is critically high. please feed the pet", pet.Name);
+            Console.WriteLine("\n{0}'s hunger level is critically high. Please feed {0}", pet.Name);
         }
 
         if (pet.Status.Happiness <= 3)
         {
-            Console.WriteLine("\n{0} is very sad and happiness is critically low. Play with the pet", pet.Name);
+            Console.WriteLine("\n{0} is very sad and happiness is critically low. Play with {0}", pet.Name);
         }
 
         if (pet.Status.Health <= 3)
         {
-            Console.WriteLine("\n{0}'s health is critically low. Let the pet rest", pet.Name);
+            Console.WriteLine("\n{0}'s health is critically low. Let {0} rest", pet.Name);
         }
     }
 }
