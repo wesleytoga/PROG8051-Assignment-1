@@ -99,7 +99,7 @@ class Program
                 // Check Every 3 hours and if the pet wasn't fed in last 3 hours 
                 if (!last3Actions.Contains(1) && timePassedInHours % 3 == 0)
                 {
-                    pet.Status.Hunger += 1;
+                    pet.Status.Hunger += 2;
                     pet.Status.Happiness -= 1;
                 }
 
